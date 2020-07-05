@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SysUserMapper">
+
+ <select id="findPage" resultType="com.example.demo.entity.vo.SysUserVO">
+    ${ew.sqlSelect}
+    from sys_user u
+    left join sys_user_role ur on ur.user_id=u.id
+    left join sys_role r on ur.role_id=r.id
+    ${ew.customSqlSegment}
+ </select>
+</mapper>

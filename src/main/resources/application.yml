@@ -1,0 +1,21 @@
+server:
+    port: 8081
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.100.10:3306/shop_plus_house?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: Linjindi000.000
+        type: com.alibaba.druid.pool.DruidDataSource
+mybatis-plus:
+    mapper-locations: classpath:com/example/demo/mapper/xml/*.xml
+    global-config:
+        db-config:
+            id-type: assign_id
+            logic-delete-value: 1
+            logic-not-delete-value: 0
+        banner: false
+    configuration:
+        map-underscore-to-camel-case: true
+        cache-enabled: false
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
