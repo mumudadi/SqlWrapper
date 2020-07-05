@@ -20,7 +20,7 @@
 		<mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
 		<lombok.version>1.16.18</lombok.version>
 		<druid.version>1.1.22</druid.version>
-		<hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
+		<hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
 		<spring.boot.version>2.2.5.RELEASE</spring.boot.version>
 		<spring.platform.version>Cairo-SR8</spring.platform.version>
 	</properties>
