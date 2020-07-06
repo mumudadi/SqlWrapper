@@ -25,7 +25,7 @@ public class SqlKeyword {
 	 * @param query 查询字段
 	 * @param qw    查询包装类
 	 */
-	public static <T> void buildCondition(Map<String, Object> query, SqlWrapper<T> qw, Class<?> clazz, SqlKeywords keywords) {
+	public static <T> void buildCondition(Map<String, Object> query, SqlWrapper<T> qw, Class<?> clazz, SqlKeywords keywords,Boolean isMultiple) {
 		if (Func.isEmpty(query)) {
 			return;
 		}
@@ -47,11 +47,11 @@ public class SqlKeyword {
 			}else if(Func.isNotEmpty(v)){
 				SqlKeywords.valueOf(Convert.toStr(keywords)).approve(qw,k,v);
 			}
-			if(!k.endsWith(DTO)) {
+			if(!k.endsWith(DTO) && isMultiple) {
 				qw.getSqlSelected().append(" ").append(k).append(",");
 			}
 		});
-		qw.selected(qw.getSqlSelected().subString(0,qw.getSqlSelected().length()-1));
+		qw.selected(isMultiple,qw.getSqlSelected().subString(0,qw.getSqlSelected().length()-1));
 	}
 
 	/**

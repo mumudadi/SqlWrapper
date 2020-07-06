@@ -80,8 +80,8 @@ public class SqlWrapper<T> extends QueryWrapper<T> {
     public StrBuilder getSqlSelected(){
         return this.sqlSelect;
     }
-    public SqlWrapper<T> selected(String... columns) {
-        if (ArrayUtils.isNotEmpty(columns)) {
+    public SqlWrapper<T> selected(Boolean isMultiple,String... columns) {
+        if (ArrayUtils.isNotEmpty(columns) && isMultiple) {
             sqlSelect.clear().append(String.join(StringPool.COMMA, columns));
             this.select(sqlSelect.toString()+sqlFrom.toString());
         }

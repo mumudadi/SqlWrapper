@@ -1,18 +1,4 @@
-/**
- * Copyright (c) 2018-2028, Chill Zhuang 庄骞 (smallchill@163.com).
- * <p>
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE 3.0;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.gnu.org/licenses/lgpl.html
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.example.demo.support;
 
 import cn.hutool.core.bean.BeanUtil;
@@ -45,19 +31,28 @@ public class Condition {
 	 * @param <T>     类型
 	 * @return QueryWrapper
 	 */
-	public static <T> SqlWrapper<T> baseQueryWrapperr(T entity, SqlKeywords keywords) {
+	public static <T> SqlWrapper<T> baseQueryWrapperr(T entity, SqlKeywords keywords,Boolean isMultiple) {
 		SqlWrapper<T> qw = new SqlWrapper<>();
-		SqlKeyword.buildCondition(BeanUtil.beanToMap(entity), qw,entity.getClass(),keywords);
+		SqlKeyword.buildCondition(BeanUtil.beanToMap(entity), qw,entity.getClass(),keywords,isMultiple);
 		return qw;
 	}
+	public static <T> SqlWrapper<T> gets(T entity) {
+		return baseQueryWrapperr(entity,SqlKeywords.EQUAL,true);
+	}
 	public static <T> SqlWrapper<T> get(T entity) {
-		return baseQueryWrapperr(entity,SqlKeywords.EQUAL);
+		return baseQueryWrapperr(entity,SqlKeywords.EQUAL,false);
 	}
 	public static <T> SqlWrapper<T> getLike(T entity) {
-		return baseQueryWrapperr(entity,SqlKeywords.LIKE);
+		return baseQueryWrapperr(entity,SqlKeywords.LIKE,false);
+	}
+	public static <T> SqlWrapper<T> getsLike(T entity) {
+		return baseQueryWrapperr(entity,SqlKeywords.LIKE,true);
+	}
+	public static <T> SqlWrapper<T> getsLikeRight(T entity) {
+		return baseQueryWrapperr(entity,SqlKeywords.LIKE_RIGHT,true);
 	}
 	public static <T> SqlWrapper<T> getLikeRight(T entity) {
-		return baseQueryWrapperr(entity,SqlKeywords.LIKE_RIGHT);
+		return baseQueryWrapperr(entity,SqlKeywords.LIKE_RIGHT,false);
 	}
 
 }
